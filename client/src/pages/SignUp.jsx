@@ -101,7 +101,7 @@ const SignUp = () => {
      </Alert>
   )
 }
-
+  
 
 
         </div>
