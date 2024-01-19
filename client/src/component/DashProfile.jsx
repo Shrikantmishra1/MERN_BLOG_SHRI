@@ -16,7 +16,8 @@ import {
   updateSuccess,
   deleteUserStart,
   deleteUserSuccess,
-  deleteUserFailure
+  deleteUserFailure,
+  signoutSuccess
 } from "../redux/user/userSlice";
 import {HiOutlineExclamationCircle} from 'react-icons/hi';
 
@@ -35,7 +36,7 @@ const DashProfile = () => {
   const filePickerRef = useRef();
   const dispatch = useDispatch();
   const handelImageChange = (e) => {
-    const file = e.target.files[0];
+  const file = e.target.files[0];
     if (file) {
       setImageFile(file);
       setImageFileUrl(URL.createObjectURL(file));
@@ -138,7 +139,21 @@ const DashProfile = () => {
        }
         
   }
-
+const handelSignout=async()=>{
+     try{
+        const res=await fetch('/api/user/signout',{
+             method:'POST',
+        });
+        const data=await res.json();
+        if(!res.ok){
+            console.log(data.message);
+        }else{
+             dispatch(signoutSuccess());
+        }
+     }catch(error){
+         console.log(error.message);
+     }
+}
   return (
     <div className="max-w-lg mx-auto p-6 w-full">
       <h1 className="my-7 text-center font-semibold text-3xl ">Profile</h1>
@@ -220,7 +235,9 @@ const DashProfile = () => {
         </Button>
       </form>
       <div className="text-red-500 flex justify-between mt-5 ">
-        <span className="cursor-pointer">Sign Out</span>
+        <span className="cursor-pointer"
+        onClick={handelSignout}
+        >Sign Out</span>
 
         <span 
          onClick={()=>setShowModal(true)}
