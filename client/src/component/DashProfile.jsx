@@ -20,6 +20,7 @@ import {
   signoutSuccess
 } from "../redux/user/userSlice";
 import {HiOutlineExclamationCircle} from 'react-icons/hi';
+import { Link } from "react-router-dom";
 
 const DashProfile = () => {
 
@@ -32,7 +33,7 @@ const DashProfile = () => {
   const [updateUserSucess, setUpdateUserSucess] = useState(null);
   const [updateUserError, setUpdateUserError] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const { currentUser,error } = useSelector((state) => state.user);
+  const { currentUser,error,loading } = useSelector((state) => state.user);
   const filePickerRef = useRef();
   const dispatch = useDispatch();
   const handelImageChange = (e) => {
@@ -230,9 +231,19 @@ const handelSignout=async()=>{
           placeholder="password."
           onChange={handelChange}
         />
-        <Button type="submit" gradientDuoTone="greenToBlue" outline>
-          Update
+        <Button type="submit" gradientDuoTone="greenToBlue" outline disabled={loading || imageFileUploading}>
+         {loading ? 'Loading ..' : 'update'}
         </Button>
+        {
+            currentUser.isAdmin  &&  (
+                <Link to={'/create-post'}>
+                <Button type="button" gradientDuoTone="greenToBlue" outline
+           className="w-full" >
+                   Create a post  
+                 </Button>
+                </Link>
+            )
+        }
       </form>
       <div className="text-red-500 flex justify-between mt-5 ">
         <span className="cursor-pointer"
