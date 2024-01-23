@@ -103,7 +103,7 @@ const DashPosts = () => {
                                setPostIdToDelete(post._id);
                           }}
                           className="font-bold text-red-500 hover:underline cursor-pointer ">Delete</span></Table.Cell>
-                          <Table.Cell >  <Link to={`/update-post${post._id}`} ><span className=" font-semibold text-indigo-500 hover:underline">Edit</span></Link></Table.Cell>
+                          <Table.Cell >  <Link to={`/update-post/${post._id}`} ><span className=" font-semibold text-indigo-500 hover:underline">Edit</span></Link></Table.Cell>
                         </Table.Row>
                       </Table.Body>
         ))}
