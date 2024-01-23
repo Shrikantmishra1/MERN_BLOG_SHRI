@@ -74,7 +74,7 @@ const handelFormSubmit=async(e)=>{
                setpublishError(data.message);
                return;
         }
-        if(res.ok){
+        if(res.ok && data){
              setpublishError(null);
              navigate(`/post/${data.slug}`)
 
