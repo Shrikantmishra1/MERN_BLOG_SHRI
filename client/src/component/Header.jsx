@@ -14,6 +14,7 @@ import { FaMoon,FaSun } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice";
 import {signoutSuccess} from "../redux/user/userSlice";
+
 const Header = () => {
   const dispatch=useDispatch();
   const path = useLocation().pathname;

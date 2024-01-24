@@ -1,7 +1,8 @@
 
-import { Spinner ,Button} from "flowbite-react";
+import { Spinner ,Button, Progress} from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
+import CallToAction from "../component/CallToAction";
 const PostPage = () => {
     const {postSlug} =useParams();
     const [loading,setLoading]=useState(true);
@@ -54,8 +55,15 @@ const PostPage = () => {
              <div className="flex justify-between p-3 border-b border-slate-300 shadow-2xl">
                   <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
                   <span className="italic">{post && (post.content.length/1000).toFixed(0)} mins read</span>
+                  <Progress progress={(post.content.length/1000).toFixed(0)}  textLabel="Flowbite" size="lg"  labelProgress labelText="min read time" color=" gray"  pill className="shadow-xl" />
              </div>
              <div className="p-3 max-w-2xl mx-auto post-content" dangerouslySetInnerHTML={{__html:post && post.content}} ></div>
+        <div className="max-w-4xl mx-auto w-full">
+
+             <CallToAction/>
+        </div>
+    
+    
     </main>
   )
 }
