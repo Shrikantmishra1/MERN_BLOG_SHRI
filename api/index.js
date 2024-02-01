@@ -6,11 +6,12 @@ import authRoutes from './routes/auth.route.js';
 import postRoutes from './routes/post.route.js';
 import cookieParser from "cookie-parser";
 dotenv.config();
+
 mongoose.connect(
- process.env.MONGO
+  'mongodb+srv://mishrashri2001:CMFFWfIFn2RjKlRY@mern.hrqva.mongodb.net/?retryWrites=true&w=majority'
 ).then(()=>{
     console.log("Database is connected")
-})
+}).catch(err => console.log(err))
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
